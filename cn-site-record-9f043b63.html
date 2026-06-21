@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>爱游戏 · 知识库 | 游戏主题信息页</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f4f5f9;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans SC", sans-serif;
+      line-height: 1.7;
+      color: #1e1e2a;
+    }
+
+    .hero {
+      background: linear-gradient(145deg, #0b0e1a 0%, #1b2238 100%);
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+      color: #eaeef6;
+      border-bottom: 4px solid #d4af37;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero .sub {
+      font-size: 1.1rem;
+      opacity: 0.85;
+      max-width: 600px;
+      margin: 0.5rem auto 0;
+      border-top: 1px solid rgba(212, 175, 55, 0.35);
+      padding-top: 1rem;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 500;
+      border-left: 5px solid #d4af37;
+      padding-left: 1rem;
+      margin: 2.5rem 0 1.2rem;
+      color: #1b2238;
+    }
+
+    .section-title:first-of-type {
+      margin-top: 0.5rem;
+    }
+
+    .explain-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 1.8rem 2rem;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+      border: 1px solid #e9ecf2;
+    }
+
+    .explain-card p {
+      margin-bottom: 1rem;
+    }
+
+    .explain-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .directory-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
+      margin: 1.5rem 0 2rem;
+    }
+
+    .dir-item {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 1.2rem 1.4rem;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+      border: 1px solid #e9ecf2;
+      transition: transform 0.15s, box-shadow 0.2s;
+    }
+
+    .dir-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.07);
+      border-color: #d4af37;
+    }
+
+    .dir-item h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #2a334b;
+      margin-bottom: 0.25rem;
+    }
+
+    .dir-item p {
+      font-size: 0.9rem;
+      color: #4f5670;
+      line-height: 1.5;
+    }
+
+    .info-area {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 1.8rem 2rem;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+      border: 1px solid #e9ecf2;
+      margin: 2rem 0;
+    }
+
+    .info-area ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .info-area li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid #eeeef5;
+      display: flex;
+      align-items: baseline;
+    }
+
+    .info-area li:last-child {
+      border-bottom: none;
+    }
+
+    .info-area li::before {
+      content: "▹";
+      color: #d4af37;
+      font-weight: 600;
+      margin-right: 0.75rem;
+    }
+
+    .tip-block {
+      background: #f0f2f8;
+      border-radius: 14px;
+      padding: 1.5rem 2rem;
+      margin: 1.8rem 0;
+      border-left: 5px solid #d4af37;
+    }
+
+    .tip-block p {
+      font-size: 0.95rem;
+      color: #2e3650;
+    }
+
+    .faq-mini {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem 2rem;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 1.6rem 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+      border: 1px solid #e9ecf2;
+      margin: 2rem 0;
+    }
+
+    .faq-mini .q {
+      font-weight: 500;
+      color: #1b2238;
+      margin-bottom: 0.1rem;
+    }
+
+    .faq-mini .a {
+      font-size: 0.9rem;
+      color: #4f5670;
+    }
+
+    .faq-mini div {
+      padding: 0.4rem 0;
+    }
+
+    a {
+      color: #b8860b;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    a:hover {
+      border-bottom: 1px solid #b8860b;
+    }
+
+    .footer-note {
+      margin-top: 3.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #6b7280;
+      border-top: 1px solid #dde0e9;
+      padding-top: 2rem;
+    }
+
+    @media (max-width: 640px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .container {
+        padding: 1.5rem 1rem 3rem;
+      }
+      .explain-card, .info-area, .faq-mini {
+        padding: 1.2rem 1rem;
+      }
+      .faq-mini {
+        grid-template-columns: 1fr;
+      }
+      .directory-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <h1>爱游戏 · 主题知识库</h1>
+    <div class="sub">围绕「爱游戏」展开的信息整理 · 目录式浏览</div>
+  </header>
+
+  <div class="container">
+
+    <!-- 说明区 -->
+    <div class="section-title">什么是「爱游戏」？</div>
+    <div class="explain-card">
+      <p><strong>爱游戏</strong> 是一个持续更新的信息聚合站点，围绕游戏文化、设计思路、玩家社区与行业发展积累内容。这里不提供简单的资讯快讯，而是尝试梳理背后的逻辑与脉络，让对游戏感兴趣的人能够更系统地理解这个领域。</p>
+      <p>站点本身就像一座小型图书馆：从游戏机制拆解到叙事研究，从独立开发笔记到经典作品分析，每一篇文章都经过整理与归类。无论你是刚入门的玩家，还是已经有一定经验的爱好者，都能在这里找到值得细读的内容。</p>
+    </div>
+
+    <!-- 目录感布局 -->
+    <div class="section-title">内容目录 · 主要板块</div>
+    <div class="directory-grid">
+      <div class="dir-item">
+        <h3>游戏设计笔记</h3>
+        <p>关卡、系统、交互…… 从设计者的视角理解乐趣的来源。</p>
+      </div>
+      <div class="dir-item">
+        <h3>叙事与世界观</h3>
+        <p>故事如何与玩法融合？世界构建的方法与案例。</p>
+      </div>
+      <div class="dir-item">
+        <h3>玩家文化观察</h3>
+        <p>社区、模组、速通、同人——游戏之外的文化生态。</p>
+      </div>
+      <div class="dir-item">
+        <h3>开发资源与参考</h3>
+        <p>工具、文档、推荐阅读，为独立制作提供支持。</p>
+      </div>
+      <div class="dir-item">
+        <h3>行业视野</h3>
+        <p>发展简史、商业模式、平台演变，理性看待产业。</p>
+      </div>
+      <div class="dir-item">
+        <h3>经典重温</h3>
+        <p>对过去作品的再分析与再评价，不止是怀旧。</p>
+      </div>
+    </div>
+
+    <!-- 相关信息区 -->
+    <div class="section-title">相关信息</div>
+    <div class="info-area">
+      <ul>
+        <li>所有内容均以原创或深度编译为主，注重引用与来源说明。</li>
+        <li>站点不设付费墙，也不展示商业广告，保持信息本身的干净。</li>
+        <li>内容持续缓慢更新 —— 比起数量更在意每一篇的扎实程度。</li>
+        <li>如果你对某个板块特别感兴趣，可以长期关注对应分类下的新文章。</li>
+      </ul>
+    </div>
+
+    <!-- 提示区 -->
+    <div class="section-title">使用提示</div>
+    <div class="tip-block">
+      <p>
+        本知识库更适合带着具体问题或兴趣方向来阅读。你可以通过浏览目录快速定位关心的主题，也可以顺着文章内的参考链接继续深入。<strong>爱游戏</strong> 并不追求覆盖所有游戏新闻，而是希望成为你理解游戏的一个安静起点。建议从你最感兴趣的板块开始，逐篇阅读，不必强求顺序。
+      </p>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="section-title">常见疑问 · 摘要</div>
+    <div class="faq-mini">
+      <div>
+        <div class="q">内容适合哪些人？</div>
+        <div class="a">对游戏有好奇心、希望更多了解游戏设计或文化的玩家、学习者和开发者。</div>
+      </div>
+      <div>
+        <div class="q">更新频率如何？</div>
+        <div class="a">不固定，但每月至少会有两篇完整文章或整理笔记。</div>
+      </div>
+      <div>
+        <div class="q">是否有社区或讨论区？</div>
+        <div class="a">当前以内容输出为主，暂未开设论坛。每篇文章末尾可留言交流。</div>
+      </div>
+      <div>
+        <div class="q">能否转载或引用？</div>
+        <div class="a">遵循 CC BY-NC 4.0 协议，署名且非商业用途即可。</div>
+      </div>
+    </div>
+
+    <!-- 自然嵌入链接 -->
+    <div style="background: #ffffff; border-radius: 14px; padding: 1.2rem 1.8rem; margin: 1.8rem 0; border: 1px solid #e9ecf2;">
+      <p style="margin: 0; font-size: 0.98rem;">
+        如果你想直接浏览所有内容，可以前往 <a href="https://cn-site-i-game.com.cn">爱游戏</a> 的主页，从那里开始探索各个板块的文章列表和分类索引。
+      </p>
+    </div>
+
+    <div class="footer-note">
+      <p>爱游戏 · 知识库风格介绍页 &nbsp;|&nbsp; 内容仅供信息参考</p>
+    </div>
+
+  </div>
+
+</body>
+</html>
