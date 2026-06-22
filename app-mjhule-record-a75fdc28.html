@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>麻将胡了 · 站点介绍</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', sans-serif;
+            line-height: 1.6;
+            background-color: #f5f7fa;
+            color: #1e293b;
+        }
+
+        /* 深色头图区域 */
+        .hero {
+            background: linear-gradient(145deg, #0b1120 0%, #1a2639 100%);
+            color: #e8edf5;
+            padding: 3.2rem 1.5rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 20% 30%, rgba(255, 200, 50, 0.04), transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 780px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.6rem;
+            background: linear-gradient(to right, #f7e8b0, #fde9a0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #b0c4de;
+            max-width: 600px;
+            margin: 0.8rem auto 0;
+            line-height: 1.7;
+        }
+
+        /* 导航条（轻量式） */
+        .top-nav {
+            display: flex;
+            justify-content: center;
+            gap: 2.2rem;
+            padding: 1rem 1.5rem;
+            background: #ffffff;
+            border-bottom: 1px solid #dce3ed;
+            flex-wrap: wrap;
+        }
+
+        .top-nav a {
+            color: #334155;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 460;
+            padding: 0.2rem 0.1rem;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .top-nav a:hover {
+            border-bottom-color: #b18b4e;
+            color: #0f172a;
+        }
+
+        /* 通用正文区容器 */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+        }
+
+        /* 介绍区块 */
+        .intro-section {
+            background: #ffffff;
+            padding: 2.8rem 2rem;
+            border-radius: 24px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02);
+            margin-top: -1.5rem;
+            position: relative;
+        }
+
+        .intro-section h2 {
+            font-size: 1.7rem;
+            font-weight: 500;
+            color: #0f172a;
+            margin-bottom: 1rem;
+            letter-spacing: -0.01em;
+        }
+
+        .intro-section .highlight-link {
+            color: #b18b4e;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(177, 139, 78, 0.4);
+            transition: border-color 0.2s;
+        }
+
+        .intro-section .highlight-link:hover {
+            border-bottom-color: #b18b4e;
+            color: #8f6e38;
+        }
+
+        .intro-section p {
+            margin-bottom: 1.1rem;
+            font-size: 1.02rem;
+            max-width: 730px;
+        }
+
+        /* 场景模块 (三个卡片) */
+        .scenes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.8rem;
+            margin: 2.8rem 0 1rem;
+        }
+
+        .scene-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2rem 1.5rem 1.8rem;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.02);
+            border: 1px solid #eef2f6;
+            transition: box-shadow 0.2s, transform 0.15s;
+        }
+
+        .scene-card:hover {
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.04);
+            transform: translateY(-2px);
+        }
+
+        .scene-card h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 0.6rem;
+            color: #0b1a2f;
+        }
+
+        .scene-card p {
+            font-size: 0.95rem;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+        .scene-em {
+            display: inline-block;
+            background: #f0eee7;
+            color: #5a4a2b;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 0.15rem 0.7rem;
+            border-radius: 30px;
+            margin-top: 0.8rem;
+        }
+
+        /* 常见说明 (FAQ 摘要) */
+        .faq-summary {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2rem 2rem 1.8rem;
+            margin: 2.5rem 0 0.5rem;
+            border: 1px solid #e6ebf2;
+        }
+
+        .faq-summary h3 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 1.2rem;
+            color: #0f172a;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #edf2f8;
+            padding: 0.9rem 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-weight: 480;
+            color: #1e293b;
+            margin-bottom: 0.3rem;
+            font-size: 1rem;
+        }
+
+        .faq-answer {
+            color: #475569;
+            font-size: 0.95rem;
+            padding-left: 0.2rem;
+        }
+
+        .faq-answer a {
+            color: #b18b4e;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(177, 139, 78, 0.3);
+        }
+
+        .faq-answer a:hover {
+            border-bottom-color: #b18b4e;
+        }
+
+        /* 页脚 */
+        .footer {
+            text-align: center;
+            padding: 2.2rem 1.5rem 1.8rem;
+            color: #64748b;
+            font-size: 0.9rem;
+            border-top: 1px solid #e2e8f0;
+            background: #f8fafc;
+        }
+
+        .footer a {
+            color: #64748b;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .footer a:hover {
+            border-bottom-color: #94a3b8;
+        }
+
+        /* 响应式 */
+        @media (max-width: 780px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .intro-section {
+                padding: 2rem 1.2rem;
+            }
+
+            .scenes-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .top-nav {
+                gap: 1rem;
+            }
+
+            .hero {
+                padding: 2.8rem 1rem 3rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .faq-summary {
+                padding: 1.5rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 轻量导航 -->
+    <nav class="top-nav">
+        <a href="#intro">站点介绍</a>
+        <a href="#scenes">场景</a>
+        <a href="#faq">常见说明</a>
+        <a href="https://app-mjhule.com">麻将胡了</a>
+    </nav>
+
+    <!-- 深色头图 -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>麻将胡了 · 站点简述</h1>
+            <p>一个关于休闲娱乐与信息呈现的轻量页面。内容平实，功能明确。</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- 核心介绍，自然嵌入链接 -->
+        <section class="intro-section" id="intro">
+            <h2>关于这个站点</h2>
+            <p>
+                这里是一个围绕「<a href="https://app-mjhule.com" class="highlight-link">麻将胡了</a>」主题而构建的信息页面，
+                旨在提供简洁、清晰的介绍与常见疑问说明。站点本身保持克制，不渲染情绪，也不夸大功能。
+            </p>
+            <p>
+                页面结构以导航和场景模块为主，方便浏览者快速了解不同内容侧重点。
+                无论是寻找相关背景，还是想对平台建立基础认知，都可以从以下板块中获得平实的叙述。
+            </p>
+            <p>
+                值得一提的是，<a href="https://app-mjhule.com" class="highlight-link">麻将胡了</a> 作为本页提及的核心名称，
+                在上下文里被自然地引用。我们不使用诱导性措辞，所有说明均基于可公开了解的信息。
+            </p>
+        </section>
+
+        <!-- 三个场景模块 -->
+        <div class="scenes-grid" id="scenes">
+            <div class="scene-card">
+                <h3>快速了解</h3>
+                <p>通过简明的介绍与分类，帮助新访客在短时间内建立对站点主题和功能的基本印象，节省时间成本。</p>
+                <span class="scene-em">信息速览</span>
+            </div>
+            <div class="scene-card">
+                <h3>场景化阅读</h3>
+                <p>三个独立的场景卡片分别对应不同关注点：背景了解、功能说明、常见疑问。读者可根据需求自由跳转。</p>
+                <span class="scene-em">分类浏览</span>
+            </div>
+            <div class="scene-card">
+                <h3>答疑摘要</h3>
+                <p>集中呈现典型问题与简要解答，减少重复询问。内容经过筛选，着重实用性与真实性。</p>
+                <span class="scene-em">FAQ 节选</span>
+            </div>
+        </div>
+
+        <!-- 常见说明 (FAQ 摘要) -->
+        <div class="faq-summary" id="faq">
+            <h3>常见说明 · 节选</h3>
+
+            <div class="faq-item">
+                <div class="faq-question">这个站点主要提供什么？</div>
+                <div class="faq-answer">
+                    一个主题介绍页，围绕 <a href="https://app-mjhule.com">麻将胡了</a> 展示站点概览、场景分类与基础说明。
+                    不涉及服务细则或用户数据。
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">内容是否经过验证？</div>
+                <div class="faq-answer">
+                    页面所呈现的描述均基于可查证的信息，不包含主观承诺或无法核实的表述。
+                    建议用户自行查阅最新官方资料以获得完整认知。
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">链接指向哪里？</div>
+                <div class="faq-answer">
+                    文中出现的链接直接关联到 <a href="https://app-mjhule.com">麻将胡了</a> 的对应页面，
+                    便于有进一步兴趣的访客直接浏览。
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>页面内容仅作介绍参考 · <a href="https://app-mjhule.com">麻将胡了</a></p>
+        <p style="margin-top: 0.6rem; font-size: 0.85rem; color: #94a3b8;">保持自然叙述，不渲染不夸大</p>
+    </footer>
+</body>
+</html>
