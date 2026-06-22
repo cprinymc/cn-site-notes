@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>麻将胡了 · 稳定入口与功能说明</title>
+    <style>
+        /* 极简留白 + 窄正文宽度 + 清晰标题层级 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f8f7f4;
+            color: #2c2b28;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            max-width: 680px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* hero 区 */
+        .hero {
+            text-align: left;
+            padding: 3rem 0 2rem 0;
+            border-bottom: 1px solid #e4e2dc;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: #1e1d1a;
+            margin-bottom: 1rem;
+        }
+
+        .hero .sub {
+            font-size: 1.05rem;
+            color: #5f5d58;
+            max-width: 520px;
+        }
+
+        /* 通用章节 */
+        .section {
+            padding: 2.5rem 0;
+            border-bottom: 1px solid #e8e6e0;
+        }
+
+        .section:last-of-type {
+            border-bottom: none;
+        }
+
+        .section h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #1e1d1a;
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.01em;
+        }
+
+        .section h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #2f2d28;
+            margin: 1.5rem 0 0.6rem 0;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            color: #3e3c37;
+            font-size: 0.98rem;
+        }
+
+        .section ul {
+            padding-left: 1.4rem;
+            margin: 0.8rem 0 1.2rem 0;
+            color: #3e3c37;
+            font-size: 0.98rem;
+        }
+
+        .section li {
+            margin-bottom: 0.4rem;
+        }
+
+        /* 卡片式特点 */
+        .feature-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin: 1.2rem 0 0.8rem 0;
+        }
+
+        .feature-card {
+            flex: 1 1 180px;
+            background: #ffffff;
+            padding: 1.2rem 1rem;
+            border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            border: 1px solid #eae8e2;
+            transition: box-shadow 0.15s;
+        }
+
+        .feature-card .icon {
+            font-size: 1.6rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .feature-card .title {
+            font-weight: 500;
+            margin-bottom: 0.2rem;
+        }
+
+        .feature-card .desc {
+            font-size: 0.9rem;
+            color: #5f5d58;
+        }
+
+        /* FAQ 摘要 */
+        .faq-item {
+            margin-bottom: 1.2rem;
+        }
+
+        .faq-item .q {
+            font-weight: 500;
+            margin-bottom: 0.2rem;
+            color: #1e1d1a;
+        }
+
+        .faq-item .a {
+            color: #4a4843;
+            font-size: 0.95rem;
+        }
+
+        /* 底部链接 */
+        .footer {
+            text-align: left;
+            padding: 2rem 0 0.5rem 0;
+            font-size: 0.9rem;
+            color: #6b6963;
+            border-top: 1px solid #e4e2dc;
+            margin-top: 1.5rem;
+        }
+
+        .footer a {
+            color: #2c2b28;
+            text-decoration: none;
+            border-bottom: 1px solid #cac7bf;
+            transition: border-color 0.15s;
+        }
+
+        .footer a:hover {
+            border-bottom-color: #2c2b28;
+        }
+
+        .footer .sep {
+            margin: 0 0.6rem;
+            color: #c5c2ba;
+        }
+
+        /* 内嵌链接样式 */
+        .inline-link {
+            color: #2c2b28;
+            text-decoration: none;
+            border-bottom: 1px solid #cac7bf;
+            transition: border-color 0.15s;
+        }
+
+        .inline-link:hover {
+            border-bottom-color: #2c2b28;
+        }
+
+        /* 响应式 */
+        @media (max-width: 480px) {
+            body {
+                padding: 1.2rem 1rem;
+            }
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+            .feature-grid {
+                flex-direction: column;
+            }
+            .feature-card {
+                flex: 1 1 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- hero 区 -->
+    <div class="hero">
+        <h1>麻将胡了 · 稳定访问入口</h1>
+        <div class="sub">
+            围绕使用场景和页面功能整理的说明页，帮助熟悉主要特点与常见问题。
+        </div>
+    </div>
+
+    <!-- 稳定与入口说明 -->
+    <div class="section">
+        <h2>关于稳定入口</h2>
+        <p>
+            对经常使用 <a href="https://home-mjhule.com" class="inline-link">麻将胡了</a> 的朋友来说，一个可靠、响应稳定的入口是日常浏览的基础。本站点作为功能说明页，梳理了主要模块、内容特点以及访问时可能遇到的细节，方便对照参考。
+        </p>
+        <p>
+            页面结构保持简洁，信息按类别分组。如果你正在寻找关于麻将胡了的基础介绍或操作指引，下方几个分区可以快速提供概要。
+        </p>
+    </div>
+
+    <!-- 优势区 / 特点卡片 -->
+    <div class="section">
+        <h2>特点与使用场景</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="icon">📄</div>
+                <div class="title">信息清晰</div>
+                <div class="desc">分区明确，每个功能模块有独立说明，减少查找成本。</div>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🔗</div>
+                <div class="title">入口直接</div>
+                <div class="desc">通过稳定链接可快速到达对应页面，无需多次跳转。</div>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🧩</div>
+                <div class="title">轻量适配</div>
+                <div class="desc">移动端与桌面端均保持良好可读性，排版适应常见屏幕。</div>
+            </div>
+            <div class="feature-card">
+                <div class="icon">⚙️</div>
+                <div class="title">常见问题</div>
+                <div class="desc">FAQ 摘要覆盖大部分日常疑问，节省逐个查找的时间。</div>
+            </div>
+        </div>
+        <p style="margin-top:0.5rem;">
+            以上特点适用于大多数使用场景，无论是初次接触还是日常使用，都能获得一致的浏览体验。
+        </p>
+    </div>
+
+    <!-- 说明区 -->
+    <div class="section">
+        <h2>页面功能说明</h2>
+        <p>
+            <strong>麻将胡了</strong> 站点包含多个内容分区，每一部分承担不同的信息角色。以下概括主要模块：
+        </p>
+        <ul>
+            <li><strong>首页 / 概览</strong> — 展示核心内容摘要，方便快速了解最新动态。</li>
+            <li><strong>分类浏览</strong> — 按主题整理内容，支持按兴趣筛选。</li>
+            <li><strong>详情 / 阅读页</strong> — 完整展示正文，包含相关资源链接与引用。</li>
+            <li><strong>辅助功能</strong> — 如搜索、索引、标签筛选，帮助更精确找到目标内容。</li>
+        </ul>
+        <p>
+            每个模块均独立设计，但保持统一的视觉风格和操作逻辑。若对某一功能存在疑问，可参考下方的 FAQ 摘要或直接访问 <a href="https://home-mjhule.com" class="inline-link">麻将胡了</a> 查看完整页面。
+        </p>
+        <h3>使用提示</h3>
+        <p>
+            建议使用最新版本的浏览器访问，以获得完整的样式与交互支持。部分较旧浏览器可能出现布局偏移，升级后可解决。
+        </p>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="section">
+        <h2>常见问题摘要</h2>
+        <div class="faq-item">
+            <div class="q">Q: 如何快速找到某个具体内容？</div>
+            <div class="a">页面内设有搜索栏和分类索引，输入关键词或按类别浏览即可定位。也可利用标签筛选缩小范围。</div>
+        </div>
+        <div class="faq-item">
+            <div class="q">Q: 移动端访问是否支持？</div>
+            <div class="a">支持。页面采用响应式布局，在手机和平板上会自动调整字体与间距，确保阅读舒适。</div>
+        </div>
+        <div class="faq-item">
+            <div class="q">Q: 链接失效或无法打开怎么办？</div>
+            <div class="a">请检查网络连接，或尝试刷新页面。如问题持续，可通过站点内提供的反馈渠道说明情况。</div>
+        </div>
+        <div class="faq-item">
+            <div class="q">Q: 页面内容是否会定期更新？</div>
+            <div class="a">是的。内容会按一定周期更新，添加新的说明和调整。变化会体现在版本记录中。</div>
+        </div>
+        <p style="margin-top:0.8rem; font-size:0.95rem;">
+            以上为常见问题摘录，更完整列表可查阅站点内的 FAQ 专页。
+        </p>
+    </div>
+
+    <!-- 底部链接 -->
+    <div class="footer">
+        <a href="https://home-mjhule.com">麻将胡了</a>
+        <span class="sep">·</span>
+        说明页 · 仅供功能参考
+        <span class="sep">·</span>
+        内容定期修订
+    </div>
+
+</div>
+</body>
+</html>
